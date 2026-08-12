@@ -53,14 +53,72 @@ def _load(name: str):
         return None
 
 
+P_COLUMNS = {"p_value", "p_corrected", "linear_p", "p_uncorrected"}
+
+
+def _fmt_p(v) -> str:
+    """
+    Render a p-value for publication.
+
+    Rounding tiny p-values to a fixed number of decimals prints '0', which is
+    both wrong and a common reviewer complaint: a p-value is never exactly
+    zero. Very small values are reported as an inequality instead.
+    """
+    if pd.isna(v):
+        return ""
+    try:
+        v = float(v)
+    except (TypeError, ValueError):
+        return str(v)
+    if v < 1e-16:
+        return "< 1e-16"
+    if v < 0.001:
+        return "< 0.001"
+    return f"{v:.3f}"
+
+
 def _md(df, cols=None, floatfmt=4):
     """Render a DataFrame as a markdown table, or a placeholder if absent."""
     if df is None or df.empty:
         return "_Table not available — run the corresponding module._\n"
     d = df[cols] if cols else df
     d = d.copy()
+
+    # Columns that are structurally empty in this study and would read as a
+    # bug if printed. Author display names are never resolvable because the
+    # publication's users endpoint requires authentication.
+    ALWAYS_DROP_IF_EMPTY = {"n_resolved_author_names", "n_unique_authors"}
+
+    def _is_empty_column(col) -> bool:
+        """True if a column carries no information: all NaN, 0, or blank."""
+        if col.isna().all():
+            return True
+        nonnull = col.dropna()
+        if nonnull.empty:
+            return True
+        if pd.api.types.is_numeric_dtype(col):
+            return bool((nonnull == 0).all())
+        # Object dtype may still hold numbers read as strings.
+        coerced = pd.to_numeric(nonnull, errors="coerce")
+        if coerced.notna().all():
+            return bool((coerced == 0).all())
+        return bool((nonnull.astype(str).str.strip() == "").all())
+
+    for c in list(d.columns):
+        if c in ("year", "n", "n_articles"):
+            continue
+        if _is_empty_column(d[c]) or (
+            c in ALWAYS_DROP_IF_EMPTY and _is_empty_column(d[c])
+        ):
+            d = d.drop(columns=[c])
+
+    for c in d.columns:
+        if c in P_COLUMNS:
+            d[c] = d[c].map(_fmt_p)
+
     for c in d.select_dtypes("float").columns:
         d[c] = d[c].round(floatfmt)
+
     try:
         return d.to_markdown(index=False) + "\n"
     except ImportError:
@@ -102,9 +160,13 @@ def build_report() -> str:
           "WordPress REST API (`/wp-json/wp/v2/posts`).\n")
         A("\n### 1.1 Articles by year\n")
         A(_md(yearly, floatfmt=1))
-        A("\n**Note:** 2026 is partial (through "
+        A("\n**Notes.** 2026 is partial (through "
           f"{END_DATE}) and is not comparable to full years without "
-          "adjustment.\n")
+          "adjustment. Distinct-author counts use the numeric `author_id` "
+          "supplied with each post; author display names could not be "
+          "retrieved because the publication's `/wp/v2/users/` endpoint "
+          "requires authentication (HTTP 401), so authors are pseudonymous "
+          "throughout.\n")
     else:
         A("_Corpus table unavailable._\n")
 
