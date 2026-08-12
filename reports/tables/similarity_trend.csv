@@ -1,0 +1,2 @@
+n_years,first_year,last_year,spearman_rho,spearman_p,kendall_tau,kendall_p,mean_sim_first,mean_sim_last
+12,2015,2026,0.5315,0.075362,0.3939,0.086317,0.17224,0.21881

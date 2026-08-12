@@ -1,0 +1,2 @@
+total_articles,missing_title,missing_date,missing_author_name,missing_text,missing_article_type,missing_year,articles_below_min_words,articles_above_max_words,articles_empty_text,median_word_count,mean_word_count,articles_after_dedup,articles_removed_dedup
+11244,0,0,11244,0,0,0,0,0,0,733.0,801.5694592671647,11242,2
