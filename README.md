@@ -1,5 +1,9 @@
 # The AI Vocabulary Shift: Stanford Daily 12-Year Analysis
 
+**Author:** Saidzhan Saitov  
+**Research Project:** Independent Research, 2026  
+**Repository:** [GitHub](https://github.com/SigmaSaid/Stanford-Daily-Research-Saidzhan)
+
 A comprehensive research project investigating linguistic change in The Stanford Daily from 2015–2026, with focus on the emergence of generative AI.
 
 ## Research Question
