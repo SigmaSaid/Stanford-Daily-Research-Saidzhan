@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Linguistic Change in The Stanford Daily, 2015–2026</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root{--ink:#16171a;--mut:#5c6169;--line:#e2e4e8;--bg:#fbfbfc;--acc:#8c1515;--acc2:#2b6cb0;--ok:#276749}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+ font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+header{background:#fff;border-bottom:1px solid var(--line);padding:56px 24px 40px}
+.wrap{max-width:1080px;margin:0 auto}
+h1{font-family:Georgia,"Times New Roman",serif;font-size:2.3rem;line-height:1.2;margin:0 0 12px;letter-spacing:-.01em}
+.sub{color:var(--mut);font-size:1.05rem;margin:0 0 22px;max-width:70ch}
+.pill{display:inline-block;background:#f3f4f6;border:1px solid var(--line);
+ border-radius:999px;padding:4px 13px;font-size:.8rem;color:var(--mut);margin:0 6px 6px 0}
+nav{position:sticky;top:0;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);
+ border-bottom:1px solid var(--line);z-index:20}
+nav .wrap{display:flex;gap:22px;overflow-x:auto;padding:13px 24px}
+nav a{color:var(--mut);text-decoration:none;font-size:.88rem;white-space:nowrap}
+nav a:hover{color:var(--acc)}
+main{padding:0 24px 90px}
+section{padding:52px 0;border-bottom:1px solid var(--line)}
+h2{font-family:Georgia,serif;font-size:1.55rem;margin:0 0 8px}
+h3{font-size:1.02rem;margin:30px 0 10px;color:var(--mut);font-weight:600;
+ text-transform:uppercase;letter-spacing:.06em}
+p{max-width:74ch}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:14px;margin:26px 0}
+.stat{background:#fff;border:1px solid var(--line);border-radius:9px;padding:17px}
+.stat .v{font-size:1.65rem;font-weight:650;font-variant-numeric:tabular-nums}
+.stat .l{font-size:.79rem;color:var(--mut);margin-top:3px}
+.chart{background:#fff;border:1px solid var(--line);border-radius:9px;padding:18px;margin:20px 0}
+.chart h4{margin:0 0 4px;font-size:.98rem}
+.chart .note{font-size:.83rem;color:var(--mut);margin:0 0 14px;max-width:74ch}
+.cbox{position:relative;height:330px}
+.tw{overflow-x:auto;margin:16px 0;background:#fff;border:1px solid var(--line);border-radius:9px}
+table{border-collapse:collapse;width:100%;font-size:.85rem;font-variant-numeric:tabular-nums}
+th,td{padding:8px 11px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{background:#f7f8f9;font-weight:600;position:sticky;top:0}
+tbody tr:hover{background:#fafbfc}
+.callout{border-left:3px solid var(--acc);background:#fff;padding:15px 19px;margin:22px 0;border-radius:0 8px 8px 0}
+.callout.warn{border-left-color:#b7791f}
+.callout.ok{border-left-color:var(--ok)}
+.callout h4{margin:0 0 6px;font-size:.95rem}
+.callout p{margin:0;font-size:.92rem;color:#3d4149}
+figure{margin:0;background:#fff;border:1px solid var(--line);border-radius:9px;overflow:hidden}
+figure img{width:100%;display:block}
+figcaption{padding:9px 13px;font-size:.8rem;color:var(--mut);border-top:1px solid var(--line);text-transform:capitalize}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:16px;margin-top:20px}
+ul.dl{columns:2;font-size:.86rem} ul.dl a{color:var(--acc2)}
+.missing{color:var(--mut);font-style:italic}
+footer{padding:34px 24px;color:var(--mut);font-size:.85rem}
+code{background:#f3f4f6;padding:2px 5px;border-radius:4px;font-size:.86em}
+@media(max-width:640px){h1{font-size:1.7rem}ul.dl{columns:1}}
+</style></head><body>
+
+<header><div class="wrap">
+<h1>Linguistic Change in Student Opinion Writing<br>at The Stanford Daily, 2015–2026</h1>
+<p class="sub">A corpus study of 11,242 articles testing whether the lexical and
+stylistic properties of student writing changed across the period in which
+generative AI became widely available.</p>
+<span class="pill">2015-01-01 → 2026-08-10</span>
+<span class="pill">N = 11,242</span>
+<span class="pill">Observational</span>
+<span class="pill">News corpus as control</span>
+</div></header>
+
+<nav><div class="wrap">
+<a href="#findings">Findings</a><a href="#corpus">Corpus</a>
+<a href="#timing">Timing</a><a href="#control">Control</a>
+<a href="#authorship">Authorship</a><a href="#vocab">Vocabulary</a>
+<a href="#figures">Figures</a><a href="#limits">Limitations</a>
+<a href="#data">Data</a>
+</div></nav>
+
+<main class="wrap">
+
+<section id="findings">
+<h2>Findings</h2>
+<div class="stats">
+  <div class="stat"><div class="v">11,242</div><div class="l">Articles analysed</div></div>
+  <div class="stat"><div class="v">0.561</div><div class="l">MATTR effect, author-level</div></div>
+  <div class="stat"><div class="v">0.372</div><div class="l">MATTR effect, Opinions</div></div>
+  <div class="stat"><div class="v">0.161</div><div class="l">MATTR effect, News (control)</div></div>
+</div>
+
+<div class="callout ok"><h4>What the data supports</h4>
+<p>Student-authored opinion writing shows a substantial increase in lexical
+diversity and a decrease in function-word density between the 2015–2019 baseline
+and 2024–2026. The effect persists when each author counts as a single
+observation, so it is not produced by a small number of prolific columnists,
+and it is markedly larger than the change in the same newspaper's news
+reporting over the same period.</p></div>
+
+<div class="callout warn"><h4>What the data does not support</h4>
+<p>No causal attribution to generative AI. The metrics disagree on when the
+change began — some inflect years before generative AI was available — the
+opinion section contracted sharply over the window so that later years rest on
+far fewer writers, and an exploratory list of AI-associated vocabulary shows no
+increase specific to opinion writing.</p></div>
+</section>
+
+<section id="corpus">
+<h2>Corpus</h2>
+<p>Collected from the publication's WordPress REST API. Articles were cleaned of
+markup, filtered by length, and deduplicated by identifier, URL and text hash.</p>
+<div class="chart"><h4>Articles per year by section</h4>
+<p class="note">The opinion section contracted far more sharply than news
+reporting. 2026 is partial.</p>
+<div class="cbox"><canvas id="cCorpus"></canvas></div></div>
+<div class="tw"><table><thead><tr><th>year</th><th>n_articles</th><th>n_opinions</th><th>n_news</th><th>n_unique_author_ids</th><th>n_resolved_author_names</th><th>mean_word_count</th><th>median_word_count</th><th>total_words</th></tr></thead><tbody><tr><td>2015</td><td>1204</td><td>448</td><td>756</td><td>212</td><td>0</td><td>743.4</td><td>739.5</td><td>895027</td></tr><tr><td>2016</td><td>1174</td><td>407</td><td>767</td><td>203</td><td>0</td><td>748.9</td><td>711.5</td><td>879252</td></tr><tr><td>2017</td><td>1072</td><td>427</td><td>645</td><td>211</td><td>0</td><td>809.7</td><td>736.0</td><td>868016</td></tr><tr><td>2018</td><td>1125</td><td>368</td><td>757</td><td>202</td><td>0</td><td>836.5</td><td>741.0</td><td>941034</td></tr><tr><td>2019</td><td>1187</td><td>332</td><td>855</td><td>229</td><td>0</td><td>794.3</td><td>705.0</td><td>942857</td></tr><tr><td>2020</td><td>1446</td><td>378</td><td>1068</td><td>427</td><td>0</td><td>882.5</td><td>777.0</td><td>1276080</td></tr><tr><td>2021</td><td>972</td><td>183</td><td>789</td><td>285</td><td>0</td><td>772.5</td><td>713.5</td><td>750869</td></tr><tr><td>2022</td><td>765</td><td>131</td><td>634</td><td>184</td><td>0</td><td>810.8</td><td>725.0</td><td>620241</td></tr><tr><td>2023</td><td>577</td><td>105</td><td>472</td><td>148</td><td>0</td><td>871.2</td><td>785.0</td><td>502694</td></tr><tr><td>2024</td><td>583</td><td>92</td><td>491</td><td>150</td><td>0</td><td>759.9</td><td>711.0</td><td>443023</td></tr><tr><td>2025</td><td>702</td><td>155</td><td>547</td><td>137</td><td>0</td><td>773.5</td><td>720.5</td><td>542999</td></tr><tr><td>2026</td><td>435</td><td>109</td><td>326</td><td>86</td><td>0</td><td>795.6</td><td>756.0</td><td>346080</td></tr></tbody></table></div>
+</section>
+
+<section id="timing">
+<h2>When did it change?</h2>
+<p>Year-by-year medians for student-authored opinion articles only, with guest
+and institutional submissions removed.</p>
+<div class="chart"><h4>Lexical diversity (MATTR), student authors only</h4>
+<p class="note">MATTR uses a moving window and is robust to article length,
+unlike simple type–token ratio. Later years rest on small samples — read the
+trajectory against the article counts in the table below.</p>
+<div class="cbox"><canvas id="cMattr"></canvas></div></div>
+<div class="chart"><h4>Function-word ratio and readability</h4>
+<p class="note">Plotted on independent axes; the two series are not directly
+comparable in magnitude.</p>
+<div class="cbox"><canvas id="cOther"></canvas></div></div>
+<div class="tw"><table><caption>Student-authored articles only</caption><thead><tr><th>year</th><th>n</th><th>mattr</th><th>func_word_ratio</th><th>avg_sentence_len</th><th>flesch_reading_ease</th></tr></thead><tbody><tr><td>2015</td><td>367</td><td>0.73</td><td>0.4466</td><td>25.32</td><td>44.2851</td></tr><tr><td>2016</td><td>267</td><td>0.7263</td><td>0.4652</td><td>26.81</td><td>47.0416</td></tr><tr><td>2017</td><td>321</td><td>0.7349</td><td>0.4651</td><td>25.39</td><td>48.7109</td></tr><tr><td>2018</td><td>260</td><td>0.7363</td><td>0.4586</td><td>24.815</td><td>49.3153</td></tr><tr><td>2019</td><td>188</td><td>0.7302</td><td>0.4585</td><td>26.0</td><td>44.2376</td></tr><tr><td>2020</td><td>333</td><td>0.7281</td><td>0.4418</td><td>25.34</td><td>42.8196</td></tr><tr><td>2021</td><td>103</td><td>0.731</td><td>0.4476</td><td>25.55</td><td>44.4157</td></tr><tr><td>2022</td><td>46</td><td>0.7378</td><td>0.4343</td><td>27.105</td><td>41.4308</td></tr><tr><td>2023</td><td>28</td><td>0.7252</td><td>0.4346</td><td>25.55</td><td>38.9944</td></tr><tr><td>2024</td><td>32</td><td>0.7459</td><td>0.4148</td><td>24.605</td><td>39.5524</td></tr><tr><td>2025</td><td>69</td><td>0.7581</td><td>0.4177</td><td>24.46</td><td>42.0758</td></tr><tr><td>2026</td><td>61</td><td>0.7632</td><td>0.4143</td><td>23.34</td><td>40.3189</td></tr></tbody></table></div>
+<h3>Change-point analysis</h3>
+<p>Segmented regression against a single-line baseline. A segmented model always
+fits at least as well as a straight line, so a breakpoint counts only when it
+clearly beats the linear fit and is well separated from the runner-up year.</p>
+<div class="tw"><table><thead><tr><th>metric</th><th>best_breakpoint</th><th>best_r2</th><th>runner_up</th><th>r2_gap</th><th>r2_linear</th><th>linear_p</th><th>slope_before</th><th>slope_after</th></tr></thead><tbody><tr><td>mattr</td><td>2023</td><td>0.904</td><td>2024</td><td>0.0014</td><td>0.5079</td><td>0.0093</td><td>0.0006</td><td>0.0126</td></tr><tr><td>func_word_ratio</td><td>2017</td><td>0.9469</td><td>2018</td><td>0.0147</td><td>0.7867</td><td>0.0001</td><td>0.0186</td><td>-0.006</td></tr><tr><td>avg_sentence_len</td><td>2022</td><td>0.7504</td><td>2023</td><td>0.1244</td><td>0.2609</td><td>0.0897</td><td>-0.0586</td><td>-0.862</td></tr><tr><td>flesch_reading_ease</td><td>2019</td><td>0.8716</td><td>2018</td><td>0.1141</td><td>0.6065</td><td>0.0028</td><td>1.676</td><td>-0.5735</td></tr></tbody></table></div>
+</section>
+
+<section id="control">
+<h2>The control corpus</h2>
+<p>The same newspaper's news reporting was collected and processed identically.
+It provides an internal control for editorial, topical and platform changes that
+would affect all published text.</p>
+<div class="chart"><h4>Effect sizes with 95% confidence intervals</h4>
+<p class="note">Rank-biserial correlation, baseline versus recent period. Bars
+show bootstrap confidence intervals. Where the Opinions and News intervals do
+not overlap, the difference between corpora is itself reliable.</p>
+<div class="cbox" style="height:430px"><canvas id="cEffects"></canvas></div></div>
+<div class="tw"><table><thead><tr><th>corpus</th><th>metric</th><th>n_pre</th><th>n_post</th><th>median_pre</th><th>median_post</th><th>p_value</th><th>effect_size</th><th>effect_ci_low</th><th>effect_ci_high</th><th>p_corrected</th><th>significant</th></tr></thead><tbody><tr><td>opinions</td><td>mattr</td><td>1982</td><td>356</td><td>0.729</td><td>0.749</td><td>0.0</td><td>0.3722</td><td>0.3102</td><td>0.4291</td><td>0.0</td><td>True</td></tr><tr><td>opinions</td><td>ttr</td><td>1982</td><td>356</td><td>0.467</td><td>0.473</td><td>0.0143</td><td>0.0814</td><td>0.021</td><td>0.1412</td><td>0.0198</td><td>True</td></tr><tr><td>opinions</td><td>root_ttr</td><td>1982</td><td>356</td><td>13.1268</td><td>14.4421</td><td>0.0</td><td>0.3934</td><td>0.3275</td><td>0.452</td><td>0.0</td><td>True</td></tr><tr><td>opinions</td><td>hapax_ratio</td><td>1982</td><td>356</td><td>0.7036</td><td>0.7141</td><td>0.0</td><td>0.1352</td><td>0.0738</td><td>0.194</td><td>0.0001</td><td>True</td></tr><tr><td>opinions</td><td>func_word_ratio</td><td>1982</td><td>356</td><td>0.4516</td><td>0.4159</td><td>0.0</td><td>-0.4639</td><td>-0.5174</td><td>-0.4075</td><td>0.0</td><td>True</td></tr><tr><td>opinions</td><td>avg_sentence_len</td><td>1982</td><td>356</td><td>25.59</td><td>24.335</td><td>0.0</td><td>-0.1599</td><td>-0.2214</td><td>-0.0961</td><td>0.0</td><td>True</td></tr><tr><td>opinions</td><td>med_sentence_len</td><td>1982</td><td>356</td><td>24.0</td><td>23.0</td><td>0.0</td><td>-0.1422</td><td>-0.2052</td><td>-0.0823</td><td>0.0</td><td>True</td></tr><tr><td>opinions</td><td>flesch_reading_ease</td><td>1982</td><td>356</td><td>45.3018</td><td>40.0857</td><td>0.0</td><td>-0.261</td><td>-0.3205</td><td>-0.1976</td><td>0.0</td><td>True</td></tr><tr><td>opinions</td><td>flesch_kincaid_grade</td><td>1982</td><td>356</td><td>12.306</td><td>12.6733</td><td>0.0071</td><td>0.0894</td><td>0.0267</td><td>0.1497</td><td>0.0107</td><td>True</td></tr><tr><td>news</td><td>mattr</td><td>3780</td><td>1364</td><td>0.7183</td><td>0.7268</td><td>0.0</td><td>0.1614</td><td>0.126</td><td>0.1964</td><td>0.0</td><td>True</td></tr><tr><td>news</td><td>ttr</td><td>3780</td><td>1364</td><td>0.4717</td><td>0.4805</td><td>0.0013</td><td>0.0585</td><td>0.024</td><td>0.0931</td><td>0.0022</td><td>True</td></tr><tr><td>news</td><td>root_ttr</td><td>3780</td><td>1364</td><td>11.8686</td><td>12.1828</td><td>0.0</td><td>0.0924</td><td>0.0576</td><td>0.1263</td><td>0.0</td><td>True</td></tr><tr><td>news</td><td>hapax_ratio</td><td>3780</td><td>1364</td><td>0.6904</td><td>0.695</td><td>0.0174</td><td>0.0434</td><td>0.0087</td><td>0.0791</td><td>0.0224</td><td>True</td></tr><tr><td>news</td><td>func_word_ratio</td><td>3780</td><td>1364</td><td>0.4137</td><td>0.4024</td><td>0.0</td><td>-0.2025</td><td>-0.2373</td><td>-0.1709</td><td>0.0</td><td>True</td></tr><tr><td>news</td><td>avg_sentence_len</td><td>3780</td><td>1364</td><td>26.58</td><td>26.52</td><td>0.9241</td><td>-0.0017</td><td>-0.037</td><td>0.0333</td><td>0.9241</td><td>False</td></tr><tr><td>news</td><td>med_sentence_len</td><td>3780</td><td>1364</td><td>25.0</td><td>25.0</td><td>0.56</td><td>0.0106</td><td>-0.0247</td><td>0.0437</td><td>0.5929</td><td>False</td></tr><tr><td>news</td><td>flesch_reading_ease</td><td>3780</td><td>1364</td><td>42.9655</td><td>42.1984</td><td>0.0559</td><td>-0.0349</td><td>-0.0718</td><td>-0.0002</td><td>0.067</td><td>False</td></tr><tr><td>news</td><td>flesch_kincaid_grade</td><td>3780</td><td>1364</td><td>12.5245</td><td>12.422</td><td>0.1959</td><td>-0.0236</td><td>-0.0591</td><td>0.0126</td><td>0.2204</td><td>False</td></tr></tbody></table></div>
+</section>
+
+<section id="authorship">
+<h2>Who is writing</h2>
+<p>The opinion section carries both student writing and guest submissions from
+alumni, parents, faculty and outside contributors. Because those groups write
+differently, a change in their mix can create or mask an apparent change in
+student writing.</p>
+<div class="chart"><h4>Guest and institutional share of the opinion section</h4>
+<div class="cbox"><canvas id="cGuest"></canvas></div></div>
+<div class="chart"><h4>Effective number of distinct authors</h4>
+<p class="note">Inverse Herfindahl index. A falling value means the corpus rests
+on fewer distinct voices, which limits how far later years generalise.</p>
+<div class="cbox"><canvas id="cConc"></canvas></div></div>
+<h3>Estimates with author leverage removed</h3>
+<div class="tw"><table><thead><tr><th>approach</th><th>metric</th><th>n_pre</th><th>n_post</th><th>median_pre</th><th>median_post</th><th>effect_size</th><th>effect_ci_low</th><th>effect_ci_high</th><th>p_value</th></tr></thead><tbody><tr><td>1_article_level</td><td>mattr</td><td>1403</td><td>162</td><td>0.7319</td><td>0.7566</td><td>0.5181</td><td>0.4416</td><td>0.589</td><td>0.0</td></tr><tr><td>2_author_as_unit</td><td>mattr</td><td>218</td><td>52</td><td>0.732</td><td>0.7589</td><td>0.561</td><td>0.4135</td><td>0.7026</td><td>0.0</td></tr><tr><td>3_drop_top5_authors</td><td>mattr</td><td>1141</td><td>92</td><td>0.7336</td><td>0.7557</td><td>0.4682</td><td>0.3634</td><td>0.5744</td><td>0.0</td></tr><tr><td>1_article_level</td><td>func_word_ratio</td><td>1403</td><td>162</td><td>0.4571</td><td>0.4153</td><td>-0.5495</td><td>-0.6221</td><td>-0.4714</td><td>0.0</td></tr><tr><td>2_author_as_unit</td><td>func_word_ratio</td><td>218</td><td>52</td><td>0.4567</td><td>0.4242</td><td>-0.5183</td><td>-0.6544</td><td>-0.37</td><td>0.0</td></tr><tr><td>3_drop_top5_authors</td><td>func_word_ratio</td><td>1141</td><td>92</td><td>0.4529</td><td>0.4207</td><td>-0.445</td><td>-0.5452</td><td>-0.3386</td><td>0.0</td></tr><tr><td>1_article_level</td><td>avg_sentence_len</td><td>1403</td><td>162</td><td>25.57</td><td>23.955</td><td>-0.2161</td><td>-0.302</td><td>-0.1332</td><td>0.0</td></tr><tr><td>2_author_as_unit</td><td>avg_sentence_len</td><td>218</td><td>52</td><td>25.5556</td><td>23.1</td><td>-0.3128</td><td>-0.4701</td><td>-0.145</td><td>0.0005</td></tr><tr><td>3_drop_top5_authors</td><td>avg_sentence_len</td><td>1141</td><td>92</td><td>25.35</td><td>23.585</td><td>-0.2356</td><td>-0.3463</td><td>-0.1137</td><td>0.0002</td></tr><tr><td>1_article_level</td><td>flesch_reading_ease</td><td>1403</td><td>162</td><td>46.7145</td><td>40.2102</td><td>-0.3017</td><td>-0.3831</td><td>-0.218</td><td>0.0</td></tr><tr><td>2_author_as_unit</td><td>flesch_reading_ease</td><td>218</td><td>52</td><td>46.4346</td><td>41.3255</td><td>-0.262</td><td>-0.4158</td><td>-0.1014</td><td>0.0033</td></tr><tr><td>3_drop_top5_authors</td><td>flesch_reading_ease</td><td>1141</td><td>92</td><td>46.2008</td><td>40.5673</td><td>-0.2334</td><td>-0.3453</td><td>-0.1186</td><td>0.0002</td></tr></tbody></table></div>
+</section>
+
+<section id="vocab">
+<h2>Exploratory AI-associated vocabulary</h2>
+<div class="callout warn"><h4>Not a detector</h4>
+<p>This word list is drawn from public commentary about the style of
+large-language-model output. It has not been validated against known
+AI-generated text and cannot establish that any article was machine-written.
+Several terms also occur naturally in articles <em>about</em> artificial
+intelligence, which would inflate later years irrespective of authorship.</p></div>
+<div class="chart"><h4>Frequency per million words, by section</h4>
+<p class="note">If both sections move together, the pattern is not specific to
+opinion writing.</p>
+<div class="cbox"><canvas id="cVocab"></canvas></div></div>
+</section>
+
+<section id="figures">
+<h2>Figures</h2>
+<div class="grid"><figure><img src="figures/01_articles_by_year.png" alt="01_articles_by_year" loading="lazy"><figcaption>01 articles by year</figcaption></figure><figure><img src="figures/02_word_count_trends.png" alt="02_word_count_trends" loading="lazy"><figcaption>02 word count trends</figcaption></figure><figure><img src="figures/03_mattr_by_year.png" alt="03_mattr_by_year" loading="lazy"><figcaption>03 mattr by year</figcaption></figure><figure><img src="figures/04_mattr_distribution.png" alt="04_mattr_distribution" loading="lazy"><figcaption>04 mattr distribution</figcaption></figure><figure><img src="figures/05_sentence_length.png" alt="05_sentence_length" loading="lazy"><figcaption>05 sentence length</figcaption></figure><figure><img src="figures/06_flesch_kincaid_grade.png" alt="06_flesch_kincaid_grade" loading="lazy"><figcaption>06 flesch kincaid grade</figcaption></figure><figure><img src="figures/06_flesch_reading_ease.png" alt="06_flesch_reading_ease" loading="lazy"><figcaption>06 flesch reading ease</figcaption></figure><figure><img src="figures/07_ai_vocab_trends.png" alt="07_ai_vocab_trends" loading="lazy"><figcaption>07 ai vocab trends</figcaption></figure><figure><img src="figures/08_ai_vocab_individual.png" alt="08_ai_vocab_individual" loading="lazy"><figcaption>08 ai vocab individual</figcaption></figure><figure><img src="figures/09_vocab_changes.png" alt="09_vocab_changes" loading="lazy"><figcaption>09 vocab changes</figcaption></figure><figure><img src="figures/10_ngram_changes_n2.png" alt="10_ngram_changes_n2" loading="lazy"><figcaption>10 ngram changes n2</figcaption></figure><figure><img src="figures/10_ngram_changes_n3.png" alt="10_ngram_changes_n3" loading="lazy"><figcaption>10 ngram changes n3</figcaption></figure><figure><img src="figures/11_semantic_similarity.png" alt="11_semantic_similarity" loading="lazy"><figcaption>11 semantic similarity</figcaption></figure><figure><img src="figures/12_embedding_pca.png" alt="12_embedding_pca" loading="lazy"><figcaption>12 embedding pca</figcaption></figure><figure><img src="figures/13_topic_distributions.png" alt="13_topic_distributions" loading="lazy"><figcaption>13 topic distributions</figcaption></figure></div>
+</section>
+
+<section id="limits">
+<h2>Limitations</h2>
+<ul>
+<li><strong>No causal identification.</strong> This is observational. No measure
+of AI use exists for these authors.</li>
+<li><strong>Confounded timing.</strong> The contraction of the opinion section
+coincides with generative-AI availability. Selection into who continued writing
+cannot be separated from an AI effect in this design.</li>
+<li><strong>Pseudonymous authors.</strong> The publication's users endpoint
+requires authentication, so analysis uses numeric author identifiers.
+Individuals cannot be verified as students.</li>
+<li><strong>Heuristic authorship classification.</strong> Guest content is
+identified by title prefix, byline and volume, not verified affiliation.</li>
+<li><strong>Small recent samples.</strong> Student-authored opinion counts are
+low in later years, so yearly medians there are unstable.</li>
+<li><strong>Length-sensitive metrics.</strong> Root type–token ratio scales with
+article length and is reported for reference only, not used for inference.</li>
+<li><strong>Embedding truncation.</strong> <code>sentence-transformers/all-MiniLM-L6-v2</code> encodes
+a limited number of word-pieces, so semantic results describe article openings.</li>
+<li><strong>Partial final year.</strong> 2026 runs only to 2026-08-10.</li>
+</ul>
+</section>
+
+<section id="data">
+<h2>Data and reproducibility</h2>
+<p>Every figure and table on this page is generated from the pipeline output.
+Linguistic metrics use spaCy <code>en_core_web_sm</code>; embeddings use
+<code>sentence-transformers/all-MiniLM-L6-v2</code>. All 34 result tables:</p>
+<ul class="dl"><li><a href="data/ai_associated_vocabulary.csv" download>ai_associated_vocabulary.csv</a></li><li><a href="data/author_stats.csv" download>author_stats.csv</a></li><li><a href="data/between_year_similarity.csv" download>between_year_similarity.csv</a></li><li><a href="data/category_stats.csv" download>category_stats.csv</a></li><li><a href="data/changepoint_analysis.csv" download>changepoint_analysis.csv</a></li><li><a href="data/diag_ai_vocab_by_corpus.csv" download>diag_ai_vocab_by_corpus.csv</a></li><li><a href="data/diag_author_concentration.csv" download>diag_author_concentration.csv</a></li><li><a href="data/diag_author_level_tests.csv" download>diag_author_level_tests.csv</a></li><li><a href="data/diag_changepoint_widened.csv" download>diag_changepoint_widened.csv</a></li><li><a href="data/diag_composition.csv" download>diag_composition.csv</a></li><li><a href="data/diag_final_author_level.csv" download>diag_final_author_level.csv</a></li><li><a href="data/diag_final_student_changepoint.csv" download>diag_final_student_changepoint.csv</a></li><li><a href="data/diag_final_student_yearly.csv" download>diag_final_student_yearly.csv</a></li><li><a href="data/diag_genre_mix.csv" download>diag_genre_mix.csv</a></li><li><a href="data/diag_genre_stratified_tests.csv" download>diag_genre_stratified_tests.csv</a></li><li><a href="data/diag_guest_share_by_year.csv" download>diag_guest_share_by_year.csv</a></li><li><a href="data/diag_guest_vs_student.csv" download>diag_guest_vs_student.csv</a></li><li><a href="data/diag_length_stratified_tests.csv" download>diag_length_stratified_tests.csv</a></li><li><a href="data/diag_length_trends.csv" download>diag_length_trends.csv</a></li><li><a href="data/diag_student_only_tests.csv" download>diag_student_only_tests.csv</a></li><li><a href="data/diag_within_corpus_tests.csv" download>diag_within_corpus_tests.csv</a></li><li><a href="data/linguistic_metrics.csv" download>linguistic_metrics.csv</a></li><li><a href="data/linguistic_metrics_by_year.csv" download>linguistic_metrics_by_year.csv</a></li><li><a href="data/ngrams_by_year.csv" download>ngrams_by_year.csv</a></li><li><a href="data/semantic_similarity_stats.csv" download>semantic_similarity_stats.csv</a></li><li><a href="data/similarity_trend.csv" download>similarity_trend.csv</a></li><li><a href="data/statistical_results.csv" download>statistical_results.csv</a></li><li><a href="data/tfidf_by_year.csv" download>tfidf_by_year.csv</a></li><li><a href="data/top_ngram_changes.csv" download>top_ngram_changes.csv</a></li><li><a href="data/top_vocabulary_changes.csv" download>top_vocabulary_changes.csv</a></li><li><a href="data/topic_distributions.csv" download>topic_distributions.csv</a></li><li><a href="data/topic_top_words.csv" download>topic_top_words.csv</a></li><li><a href="data/word_freq_by_year.csv" download>word_freq_by_year.csv</a></li><li><a href="data/yearly_corpus_statistics.csv" download>yearly_corpus_statistics.csv</a></li></ul>
+</section>
+
+</main>
+<footer class="wrap">Generated from pipeline output. Numbers on this page are
+read directly from the result tables and are not hand-entered.</footer>
+
+<script>
+const D = {"corpus": [{"year": 2015, "n_opinions": 448, "n_news": 756}, {"year": 2016, "n_opinions": 407, "n_news": 767}, {"year": 2017, "n_opinions": 427, "n_news": 645}, {"year": 2018, "n_opinions": 368, "n_news": 757}, {"year": 2019, "n_opinions": 332, "n_news": 855}, {"year": 2020, "n_opinions": 378, "n_news": 1068}, {"year": 2021, "n_opinions": 183, "n_news": 789}, {"year": 2022, "n_opinions": 131, "n_news": 634}, {"year": 2023, "n_opinions": 105, "n_news": 472}, {"year": 2024, "n_opinions": 92, "n_news": 491}, {"year": 2025, "n_opinions": 155, "n_news": 547}, {"year": 2026, "n_opinions": 109, "n_news": 326}], "student": [{"year": 2015, "n": 367, "mattr": 0.73, "func_word_ratio": 0.4466, "avg_sentence_len": 25.32, "flesch_reading_ease": 44.2851}, {"year": 2016, "n": 267, "mattr": 0.7263, "func_word_ratio": 0.4652, "avg_sentence_len": 26.81, "flesch_reading_ease": 47.0416}, {"year": 2017, "n": 321, "mattr": 0.7349, "func_word_ratio": 0.4651, "avg_sentence_len": 25.39, "flesch_reading_ease": 48.7109}, {"year": 2018, "n": 260, "mattr": 0.7363, "func_word_ratio": 0.4586, "avg_sentence_len": 24.815, "flesch_reading_ease": 49.3153}, {"year": 2019, "n": 188, "mattr": 0.7302, "func_word_ratio": 0.4585, "avg_sentence_len": 26.0, "flesch_reading_ease": 44.2376}, {"year": 2020, "n": 333, "mattr": 0.7281, "func_word_ratio": 0.4418, "avg_sentence_len": 25.34, "flesch_reading_ease": 42.8196}, {"year": 2021, "n": 103, "mattr": 0.731, "func_word_ratio": 0.4476, "avg_sentence_len": 25.55, "flesch_reading_ease": 44.4157}, {"year": 2022, "n": 46, "mattr": 0.7378, "func_word_ratio": 0.4343, "avg_sentence_len": 27.105, "flesch_reading_ease": 41.4308}, {"year": 2023, "n": 28, "mattr": 0.7252, "func_word_ratio": 0.4346, "avg_sentence_len": 25.55, "flesch_reading_ease": 38.9944}, {"year": 2024, "n": 32, "mattr": 0.7459, "func_word_ratio": 0.4148, "avg_sentence_len": 24.605, "flesch_reading_ease": 39.5524}, {"year": 2025, "n": 69, "mattr": 0.7581, "func_word_ratio": 0.4177, "avg_sentence_len": 24.46, "flesch_reading_ease": 42.0758}, {"year": 2026, "n": 61, "mattr": 0.7632, "func_word_ratio": 0.4143, "avg_sentence_len": 23.34, "flesch_reading_ease": 40.3189}], "effects": [{"corpus": "opinions", "metric": "mattr", "effect_size": 0.3722, "effect_ci_low": 0.3102, "effect_ci_high": 0.4291}, {"corpus": "opinions", "metric": "ttr", "effect_size": 0.0814, "effect_ci_low": 0.021, "effect_ci_high": 0.1412}, {"corpus": "opinions", "metric": "root_ttr", "effect_size": 0.3934, "effect_ci_low": 0.3275, "effect_ci_high": 0.452}, {"corpus": "opinions", "metric": "hapax_ratio", "effect_size": 0.1352, "effect_ci_low": 0.0738, "effect_ci_high": 0.194}, {"corpus": "opinions", "metric": "func_word_ratio", "effect_size": -0.4639, "effect_ci_low": -0.5174, "effect_ci_high": -0.4075}, {"corpus": "opinions", "metric": "avg_sentence_len", "effect_size": -0.1599, "effect_ci_low": -0.2214, "effect_ci_high": -0.0961}, {"corpus": "opinions", "metric": "med_sentence_len", "effect_size": -0.1422, "effect_ci_low": -0.2052, "effect_ci_high": -0.0823}, {"corpus": "opinions", "metric": "flesch_reading_ease", "effect_size": -0.261, "effect_ci_low": -0.3205, "effect_ci_high": -0.1976}, {"corpus": "opinions", "metric": "flesch_kincaid_grade", "effect_size": 0.0894, "effect_ci_low": 0.0267, "effect_ci_high": 0.1497}, {"corpus": "news", "metric": "mattr", "effect_size": 0.1614, "effect_ci_low": 0.126, "effect_ci_high": 0.1964}, {"corpus": "news", "metric": "ttr", "effect_size": 0.0585, "effect_ci_low": 0.024, "effect_ci_high": 0.0931}, {"corpus": "news", "metric": "root_ttr", "effect_size": 0.0924, "effect_ci_low": 0.0576, "effect_ci_high": 0.1263}, {"corpus": "news", "metric": "hapax_ratio", "effect_size": 0.0434, "effect_ci_low": 0.0087, "effect_ci_high": 0.0791}, {"corpus": "news", "metric": "func_word_ratio", "effect_size": -0.2025, "effect_ci_low": -0.2373, "effect_ci_high": -0.1709}, {"corpus": "news", "metric": "avg_sentence_len", "effect_size": -0.0017, "effect_ci_low": -0.037, "effect_ci_high": 0.0333}, {"corpus": "news", "metric": "med_sentence_len", "effect_size": 0.0106, "effect_ci_low": -0.0247, "effect_ci_high": 0.0437}, {"corpus": "news", "metric": "flesch_reading_ease", "effect_size": -0.0349, "effect_ci_low": -0.0718, "effect_ci_high": -0.0002}, {"corpus": "news", "metric": "flesch_kincaid_grade", "effect_size": -0.0236, "effect_ci_low": -0.0591, "effect_ci_high": 0.0126}], "guest": [{"year": 2015, "guest_share": 0.1808, "n_student": 367, "n_guest": 81}, {"year": 2016, "guest_share": 0.344, "n_student": 267, "n_guest": 140}, {"year": 2017, "guest_share": 0.2482, "n_student": 321, "n_guest": 106}, {"year": 2018, "guest_share": 0.2935, "n_student": 260, "n_guest": 108}, {"year": 2019, "guest_share": 0.4337, "n_student": 188, "n_guest": 144}, {"year": 2020, "guest_share": 0.119, "n_student": 333, "n_guest": 45}, {"year": 2021, "guest_share": 0.4372, "n_student": 103, "n_guest": 80}, {"year": 2022, "guest_share": 0.6489, "n_student": 46, "n_guest": 85}, {"year": 2023, "guest_share": 0.7333, "n_student": 28, "n_guest": 77}, {"year": 2024, "guest_share": 0.6522, "n_student": 32, "n_guest": 60}, {"year": 2025, "guest_share": 0.5548, "n_student": 69, "n_guest": 86}, {"year": 2026, "guest_share": 0.4404, "n_student": 61, "n_guest": 48}], "conc": [{"year": 2015, "effective_n_authors": 19.9, "n_unique_authors": 75}, {"year": 2016, "effective_n_authors": 8.8, "n_unique_authors": 59}, {"year": 2017, "effective_n_authors": 17.3, "n_unique_authors": 58}, {"year": 2018, "effective_n_authors": 12.0, "n_unique_authors": 69}, {"year": 2019, "effective_n_authors": 5.4, "n_unique_authors": 76}, {"year": 2020, "effective_n_authors": 61.7, "n_unique_authors": 219}, {"year": 2021, "effective_n_authors": 24.8, "n_unique_authors": 93}, {"year": 2022, "effective_n_authors": 4.7, "n_unique_authors": 46}, {"year": 2023, "effective_n_authors": 3.9, "n_unique_authors": 28}, {"year": 2024, "effective_n_authors": 3.6, "n_unique_authors": 26}, {"year": 2025, "effective_n_authors": 3.4, "n_unique_authors": 28}, {"year": 2026, "effective_n_authors": 6.3, "n_unique_authors": 30}], "aivoc": [{"year": 2015, "corpus": "opinions", "freq_per_million": 909.07}, {"year": 2016, "corpus": "opinions", "freq_per_million": 822.52}, {"year": 2017, "corpus": "opinions", "freq_per_million": 769.57}, {"year": 2018, "corpus": "opinions", "freq_per_million": 825.56}, {"year": 2019, "corpus": "opinions", "freq_per_million": 1082.76}, {"year": 2020, "corpus": "opinions", "freq_per_million": 853.94}, {"year": 2021, "corpus": "opinions", "freq_per_million": 870.87}, {"year": 2022, "corpus": "opinions", "freq_per_million": 983.65}, {"year": 2023, "corpus": "opinions", "freq_per_million": 658.36}, {"year": 2024, "corpus": "opinions", "freq_per_million": 1105.27}, {"year": 2025, "corpus": "opinions", "freq_per_million": 1074.8}, {"year": 2026, "corpus": "opinions", "freq_per_million": 1525.02}, {"year": 2015, "corpus": "news", "freq_per_million": 676.08}, {"year": 2016, "corpus": "news", "freq_per_million": 664.75}, {"year": 2017, "corpus": "news", "freq_per_million": 655.89}, {"year": 2018, "corpus": "news", "freq_per_million": 714.8}, {"year": 2019, "corpus": "news", "freq_per_million": 787.57}, {"year": 2020, "corpus": "news", "freq_per_million": 636.25}, {"year": 2021, "corpus": "news", "freq_per_million": 793.43}, {"year": 2022, "corpus": "news", "freq_per_million": 792.18}, {"year": 2023, "corpus": "news", "freq_per_million": 758.75}, {"year": 2024, "corpus": "news", "freq_per_million": 1000.04}, {"year": 2025, "corpus": "news", "freq_per_million": 1140.94}, {"year": 2026, "corpus": "news", "freq_per_million": 795.97}]};
+const MUT='#5c6169', ACC='#8c1515', ACC2='#2b6cb0', LINE='#e2e4e8';
+Chart.defaults.font.family='-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif';
+Chart.defaults.color=MUT; Chart.defaults.maintainAspectRatio=false;
+const g=(a,k)=>a.map(r=>r[k]);
+const miss=id=>{const e=document.getElementById(id); if(!e)return;
+ const b=e.closest('.cbox'); if(b){b.style.height='auto';
+ b.innerHTML='<p class="missing">Data not available — run the corresponding diagnostic module.</p>';}};
+const mk=(id,cfg)=>{const e=document.getElementById(id);
+ if(!e)return; if(!window.Chart){miss(id);return;} new Chart(e,cfg);};
+
+if(D.corpus.length) mk('cCorpus',{type:'bar',data:{labels:g(D.corpus,'year'),
+ datasets:[{label:'Opinions',data:g(D.corpus,'n_opinions'),backgroundColor:ACC},
+           {label:'News',data:g(D.corpus,'n_news'),backgroundColor:'#c8ccd2'}]},
+ options:{scales:{x:{stacked:true,grid:{display:false}},
+  y:{stacked:true,title:{display:true,text:'Articles'},grid:{color:LINE}}}}}); else miss('cCorpus');
+
+if(D.student.length) mk('cMattr',{type:'line',data:{labels:g(D.student,'year'),
+ datasets:[{label:'MATTR (median)',data:g(D.student,'mattr'),borderColor:ACC,
+  backgroundColor:'rgba(140,21,21,.07)',fill:true,tension:.25,pointRadius:4}]},
+ options:{plugins:{tooltip:{callbacks:{afterLabel:c=>'n = '+D.student[c.dataIndex].n}}},
+  scales:{y:{title:{display:true,text:'MATTR'},grid:{color:LINE}},
+   x:{grid:{display:false}}}}}); else miss('cMattr');
+
+if(D.student.length) mk('cOther',{type:'line',data:{labels:g(D.student,'year'),
+ datasets:[{label:'Function-word ratio',data:g(D.student,'func_word_ratio'),
+   borderColor:ACC2,tension:.25,yAxisID:'y',pointRadius:3},
+  {label:'Flesch reading ease',data:g(D.student,'flesch_reading_ease'),
+   borderColor:'#b7791f',tension:.25,yAxisID:'y1',pointRadius:3}]},
+ options:{scales:{y:{position:'left',title:{display:true,text:'Function-word ratio'},grid:{color:LINE}},
+  y1:{position:'right',title:{display:true,text:'Flesch reading ease'},grid:{display:false}},
+  x:{grid:{display:false}}}}}); else miss('cOther');
+
+if(D.effects.length){
+ const ms=[...new Set(D.effects.map(r=>r.metric))];
+ const ds=['opinions','news'].map((c,i)=>({label:c==='opinions'?'Opinions':'News (control)',
+  data:ms.map(m=>{const r=D.effects.find(x=>x.corpus===c&&x.metric===m);
+   return r?[r.effect_ci_low,r.effect_ci_high]:null;}),
+  backgroundColor:i?'#c8ccd2':ACC,borderWidth:0,borderSkipped:false}));
+ mk('cEffects',{type:'bar',data:{labels:ms,datasets:ds},
+  options:{indexAxis:'y',plugins:{tooltip:{callbacks:{label:c=>
+    c.dataset.label+': ['+c.raw[0]+', '+c.raw[1]+']'}}},
+   scales:{x:{title:{display:true,text:'Rank-biserial effect size (95% CI)'},grid:{color:LINE}},
+    y:{grid:{display:false}}}}});} else miss('cEffects');
+
+if(D.guest.length) mk('cGuest',{type:'line',data:{labels:g(D.guest,'year'),
+ datasets:[{label:'Guest share',data:g(D.guest,'guest_share'),borderColor:'#b7791f',
+  backgroundColor:'rgba(183,121,31,.1)',fill:true,tension:.25,pointRadius:3}]},
+ options:{scales:{y:{min:0,max:1,title:{display:true,text:'Share of opinion articles'},
+  ticks:{callback:v=>(v*100)+'%'},grid:{color:LINE}},x:{grid:{display:false}}}}}); else miss('cGuest');
+
+if(D.conc.length) mk('cConc',{type:'line',data:{labels:g(D.conc,'year'),
+ datasets:[{label:'Effective authors (1/HHI)',data:g(D.conc,'effective_n_authors'),
+  borderColor:'#276749',tension:.25,pointRadius:3}]},
+ options:{scales:{y:{title:{display:true,text:'Effective authors'},grid:{color:LINE}},
+  x:{grid:{display:false}}}}}); else miss('cConc');
+
+if(D.aivoc.length){
+ const ys=[...new Set(D.aivoc.map(r=>r.year))].sort();
+ const s=c=>ys.map(y=>{const r=D.aivoc.find(x=>x.year===y&&x.corpus===c);return r?r.freq_per_million:null;});
+ mk('cVocab',{type:'line',data:{labels:ys,datasets:[
+  {label:'Opinions',data:s('opinions'),borderColor:ACC,tension:.25,pointRadius:3},
+  {label:'News',data:s('news'),borderColor:'#9aa0a8',tension:.25,pointRadius:3}]},
+  options:{scales:{y:{title:{display:true,text:'Per million words'},grid:{color:LINE}},
+   x:{grid:{display:false}}}}});} else miss('cVocab');
+</script>
+</body></html>

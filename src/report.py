@@ -297,19 +297,33 @@ def build_report() -> str:
 
     # ── interpretation ────────────────────────────────────────────────────────
     A("\n## 4. Interpretation\n")
-    A(">>> WRITE: This section is deliberately empty.\n\n"
-      "Constraints to respect:\n\n"
-      "1. This is an **observational** study. Report temporal association; do "
-      "not claim causation.\n"
-      "2. Do not treat 2022 as evidence of AI influence by itself. Any "
-      "coinciding change in corpus size, authorship or editorial policy is an "
-      "equally consistent explanation.\n"
-      "3. Statistical significance is not importance. Report n, effect size "
-      "and CI together; large samples make trivial differences significant.\n"
-      "4. Where metrics disagree on timing, say so rather than reporting only "
-      "the ones that align.\n"
-      "5. The vocabulary list is exploratory and cannot establish that any "
-      "text was AI-generated.\n")
+
+    interp = REPORTS_DIR / "interpretation.md"
+    if interp.exists():
+        written = interp.read_text(encoding="utf-8").strip()
+        if written:
+            A(written + "\n")
+            logger.info("Included author interpretation from %s", interp)
+        else:
+            A("_`reports/interpretation.md` exists but is empty._\n")
+    else:
+        A(">>> WRITE: This section is deliberately empty.\n\n"
+          "Create `reports/interpretation.md` and write there. Its contents "
+          "are spliced in here on every run, so regenerating this report will "
+          "never overwrite your writing.\n\n"
+          "Constraints to respect:\n\n"
+          "1. This is an **observational** study. Report temporal association; "
+          "do not claim causation.\n"
+          "2. Do not treat 2022 as evidence of AI influence by itself. Any "
+          "coinciding change in corpus size, authorship or editorial policy is "
+          "an equally consistent explanation.\n"
+          "3. Statistical significance is not importance. Report n, effect "
+          "size and CI together; large samples make trivial differences "
+          "significant.\n"
+          "4. Where metrics disagree on timing, say so rather than reporting "
+          "only the ones that align.\n"
+          "5. The vocabulary list is exploratory and cannot establish that any "
+          "text was AI-generated.\n")
 
     # ── limitations ───────────────────────────────────────────────────────────
     A("\n## 5. Limitations\n")

@@ -1,0 +1,5 @@
+metric,best_breakpoint,best_r2,runner_up,r2_gap,r2_linear,linear_p,slope_before,slope_after
+mattr,2023,0.904,2024,0.0014,0.5079,0.00929,0.000614,0.01262
+func_word_ratio,2017,0.9469,2018,0.0147,0.7867,0.00012,0.0186,-0.006042
+avg_sentence_len,2022,0.7504,2023,0.1244,0.2609,0.08972,-0.058571,-0.862
+flesch_reading_ease,2019,0.8716,2018,0.1141,0.6065,0.00284,1.67599,-0.573526
