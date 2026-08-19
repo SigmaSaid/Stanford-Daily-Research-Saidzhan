@@ -347,6 +347,5 @@ For questions about methodology, see the research report and docstrings througho
 
 ---
 
-**Last Updated**: 2026-08-11
-**Status**: Audited and repaired; synthetic end-to-end validation passing (46 unit tests, full 12-step pipeline exit 0). Live API and embedding-model download NOT yet verified.
-**Real Data Status**: Not collected in this environment (network restrictions). Ready to collect on your local machine.
+**Last Updated**: 2026-08-19
+**Status**: Collection complete. 11,242 articles retrieved from the live Stanford Daily WordPress API (2015-01-01 to 2026-08-10) — confirmed against `data/raw/collection.log`. Unit tests: 46/46 passing. Full 12-step pipeline (`python -m src.run_pipeline`) runs end-to-end, exit 0.
