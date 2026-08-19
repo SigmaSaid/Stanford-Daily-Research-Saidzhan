@@ -1,6 +1,7 @@
 # The AI Vocabulary Shift: Stanford Daily 12-Year Analysis
 
 **Author:** Saidzhan Saitov and Afshinkhan Toktonazarov
+
 **Research Project:** Independent Research, 2026  
 **Repository:** [GitHub](https://github.com/SigmaSaid/Stanford-Daily-Research-Saidzhan)
 
