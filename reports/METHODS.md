@@ -75,10 +75,12 @@ each period removed.
 1. **The piece that prompted this one.** T. Mui, "From the Community | What
    15 years of Daily opinion pieces reveal about diversity," *The Stanford
    Daily*, November 5, 2025.
-2. **This repository.** The full data-collection and analysis pipeline,
-   every diagnostic table, and all figures referenced in the article are in
-   this repo, so any number in the piece can be traced back to its source
-   table.
+2. **The corpus.** 11,242 articles collected from the Daily's public
+   WordPress REST API, January 2015 through August 2026, Opinions and News
+   alike.
+3. **The code and methods.** The full analysis pipeline, every diagnostic
+   table, and this note documenting the choices behind the analysis, so any
+   number in the piece can be traced back to its source table.
 
 ## Reproducibility
 
